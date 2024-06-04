@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const uvIndexRoutes = require("./routes/uvIndexRoutes");
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("TanO'Clock server has been set up.");
 });
+
+app.use("/api/uvindex", uvIndexRoutes);
 
 // Start server
 app.listen(port, () => {
