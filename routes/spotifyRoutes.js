@@ -9,7 +9,7 @@ dotenv.config();
 
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
-const redirect_uri = 'http://localhost:8080/api/spotify/callback';
+const redirect_uri = process.env.REDIRECT_URI;
 
 const stateKey = 'spotify_auth_state';
 
@@ -132,51 +132,63 @@ router.get('/refresh_token', (req, res) => {
     });
 });
 
-router.get('/user_playlists', (req, res) => {
-  const access_token = req.cookies ? req.cookies['access_token'] : null;
-
-  if (!access_token) {
-    return res.status(401).send('Access token missing or expired');
+router.get('/refresh_token', async (req, res) => {
+  const refresh_token = req.query.refresh_token;
+  
+  if (!refresh_token) {
+    return res.status(400).send({ error: 'refresh_token is required' });
   }
 
-  const options = {
-    url: 'https://api.spotify.com/v1/me/playlists',
-    headers: { 'Authorization': 'Bearer ' + access_token }
+  const authOptions = {
+    url: 'https://accounts.spotify.com/api/token',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64')
+    },
+    data: querystring.stringify({
+      grant_type: 'refresh_token',
+      refresh_token: refresh_token
+    })
   };
 
-  axios.get(options.url, { headers: options.headers })
-    .then(response => {
-      res.send(response.data);
-    })
-    .catch(error => {
-      console.error('Error fetching user playlists:', error);
-      res.status(500).send('Internal Server Error');
-    });
-});
-
-router.get('/featured_playlists', (req, res) => {
-  const access_token = req.cookies ? req.cookies['access_token'] : null;
-
-  if (!access_token) {
-    return res.status(401).send('Access token missing or expired');
+  try {
+    const response = await axios.post(authOptions.url, authOptions.data, { headers: authOptions.headers });
+    if (response.status === 200) {
+      const { access_token } = response.data;
+      res.send({ access_token });
+    } else {
+      res.status(response.status).send(response.data);
+    }
+  } catch (error) {
+    console.error('Error refreshing token:', error.response ? error.response.data : error.message);
+    res.status(500).send('Internal Server Error');
   }
-
-  const options = {
-    url: 'https://api.spotify.com/v1/browse/featured-playlists',
-    headers: { 'Authorization': 'Bearer ' + access_token }
-  };
-
-  axios.get(options.url, { headers: options.headers })
-    .then(response => {
-      res.send(response.data);
-    })
-    .catch(error => {
-      console.error('Error fetching featured playlists:', error);
-      res.status(500).send('Internal Server Error');
-    });
 });
 
+router.post('/token', (req, res) => {
+  const url = 'https://accounts.spotify.com/api/token';
+
+  const authOptions = {
+    method: 'POST',
+    url: url,
+    headers: {
+      'Authorization': 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    form: {
+      grant_type: 'client_credentials'
+    }
+  };
+
+  request(authOptions, (error, response, body) => {
+    if (!error && response.statusCode === 200) {
+      res.send(body);
+    } else {
+      res.status(response.statusCode).send(error);
+    }
+  });
+});
 
 module.exports = router;
 
-module.exports = router;
+
