@@ -10,7 +10,7 @@ const fs = require("fs");
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 const CORS_ORIGIN = process.env.CORS_ORIGIN;
 
 // Middleware
