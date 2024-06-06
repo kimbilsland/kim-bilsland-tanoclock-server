@@ -165,29 +165,29 @@ router.get('/refresh_token', async (req, res) => {
   }
 });
 
-router.post('/token', (req, res) => {
-  const url = 'https://accounts.spotify.com/api/token';
+// router.post('/token', (req, res) => {
+//   const url = 'https://accounts.spotify.com/api/token';
 
-  const authOptions = {
-    method: 'POST',
-    url: url,
-    headers: {
-      'Authorization': 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64'),
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    form: {
-      grant_type: 'client_credentials'
-    }
-  };
+//   const authOptions = {
+//     method: 'POST',
+//     url: url,
+//     headers: {
+//       'Authorization': 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64'),
+//       'Content-Type': 'application/x-www-form-urlencoded'
+//     },
+//     form: {
+//       grant_type: 'client_credentials'
+//     }
+//   };
 
-  request(authOptions, (error, response, body) => {
-    if (!error && response.statusCode === 200) {
-      res.send(body);
-    } else {
-      res.status(response.statusCode).send(error);
-    }
-  });
-});
+//   request(authOptions, (error, response, body) => {
+//     if (!error && response.statusCode === 200) {
+//       res.send(body);
+//     } else {
+//       res.status(response.statusCode).send(error);
+//     }
+//   });
+// });
 
 module.exports = router;
 
