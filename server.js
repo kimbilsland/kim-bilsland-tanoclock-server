@@ -34,7 +34,7 @@ app.get("/skintones", (req, res) => {
 });
 
 app.use("/skintones", skinToneRoutes);
-app.use("/api/uvindex", uvIndexRoutes);
+// app.use("/api/uvindex", uvIndexRoutes);
 app.use("/api/spotify", spotifyRoutes);
 app.use("/api/products", productRoutes);
 
