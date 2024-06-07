@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const uvIndexRoutes = require("./routes/uvIndexRoutes");
 const spotifyRoutes = require("./routes/spotifyRoutes");
 const skinToneRoutes = require("./routes/skinToneRoutes");
+const productRoutes = require("./routes/productRoutes");
 const fs = require("fs");
 
 dotenv.config();
@@ -35,6 +36,7 @@ app.get("/skintones", (req, res) => {
 app.use("/skintones", skinToneRoutes);
 app.use("/api/uvindex", uvIndexRoutes);
 app.use("/api/spotify", spotifyRoutes);
+app.use("/api/products", productRoutes);
 
 // Start server
 app.listen(port, () => {
