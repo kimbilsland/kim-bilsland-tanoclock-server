@@ -37,6 +37,7 @@ app.use("/skintones", skinToneRoutes);
 // app.use("/api/uvindex", uvIndexRoutes);
 app.use("/api/spotify", spotifyRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/products/:id", productRoutes)
 
 // Start server
 app.listen(port, () => {
