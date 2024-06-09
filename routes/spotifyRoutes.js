@@ -165,6 +165,18 @@ router.get('/refresh_token', async (req, res) => {
   }
 });
 
+router.get('/playlist', async (req, res) => {
+  try {
+    const response = await axios.get('https://open.spotify.com/oembed?url=https%3A%2F%2Fopen.spotify.com%2Fepisode%2F7makk4oTQel546B0PZlDM5', {
+    });
+    res.json(response.data);
+    console.log(response.data)
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 // router.post('/token', (req, res) => {
 //   const url = 'https://accounts.spotify.com/api/token';
 

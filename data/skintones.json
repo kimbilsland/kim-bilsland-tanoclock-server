@@ -2,51 +2,61 @@
     {
       "id": 1,
       "tone": "st1",
+      "shade": "light",
       "image": "MST_1.png"
     },
     {
       "id": 2,
-      "tone": "st1",
+      "tone": "st2",
+      "shade": "light",
       "image": "MST_2.png"
     },
     {
       "id": 3,
-      "tone": "st2",
+      "tone": "st3",
+      "shade": "light",
       "image": "MST_3.png"
     },
     {
       "id": 4,
       "tone": "st3",
+      "shade": "light",
       "image": "MST_4.png"
     },
     {
       "id": 5,
-      "tone": "st3",
+      "tone": "st4",
+      "shade": "medium",
       "image": "MST_5.png"
     },
     {
       "id": 6,
-      "tone": "st4",
+      "tone": "st5",
+      "shade": "medium",
       "image": "MST_6.png"
     },
     {
       "id": 7,
-      "tone": "5",
+      "tone": "st5",
+      "shade": "medium",
       "image": "MST_7.png"
     },
     {
       "id": 8,
       "tone": "st5",
+      "shade": "dark",
       "image": "MST_8.png"
     },
     {
       "id": 9,
       "tone": "st6",
+      "shade": "dark",
       "image": "MST_9.png"
     },
     {
       "id": 10,
       "tone": "st6",
+      "shade": "dark",
       "image": "MST_10.png"
     }
   ]

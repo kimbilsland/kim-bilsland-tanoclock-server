@@ -260,18 +260,6 @@ exports.seed = async function (knex) {
       category: "Alternative-tanning",
     },
     {
-      id: 24,
-      name: "Salty Face Bronzing Body Oil",
-      description:
-        "A hydrating body oil infused with coconut oil and shimmering particles to give your skin a sun-kissed glow.",
-      price: 28,
-      type: "all",
-      image:
-        "product-24.jpg",
-      rating: 4.6,
-      category: "Alternative-Tanning",
-    },
-    {
       id: 25,
       name: "Salty Face Self-Tanning Mousse",
       description:
@@ -281,7 +269,7 @@ exports.seed = async function (knex) {
       image:
         "product-25.jpg",
       rating: 4.8,
-      category: "Alternative-Tanning",
+      category: "Alternative-tanning",
     },
     {
       id: 26,
@@ -293,7 +281,7 @@ exports.seed = async function (knex) {
       image:
         "product-26.jpg",
       rating: 4.5,
-      category: "Alternative-Tanning",
+      category: "Alternative-tanning",
     },
     {
       id: 27,
@@ -305,7 +293,7 @@ exports.seed = async function (knex) {
       image:
         "product-27.jpg",
       rating: 4.7,
-      category: "Alternative-Tanning",
+      category: "Alternative-tanning",
     },
   ]);
 };
