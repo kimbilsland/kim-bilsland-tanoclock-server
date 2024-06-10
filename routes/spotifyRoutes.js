@@ -47,9 +47,9 @@ router.get("/login", function (req, res) {
 });
 
 router.get("/callback", function (req, res) {
-  var code = req.query.code || null;
-  var state = req.query.state || null;
-  var storedState = req.cookies ? req.cookies[stateKey] : null;
+  const code = req.query.code || null;
+  const state = req.query.state || null;
+  const storedState = req.cookies ? req.cookies[stateKey] : null;
 
   if (state === null || state !== storedState) {
     res.redirect("/#" + querystring.stringify({ error: "state_mismatch" }));
@@ -66,29 +66,19 @@ router.get("/callback", function (req, res) {
       headers: {
         "content-type": "application/x-www-form-urlencoded",
         Authorization:
-          "Basic " +
-          Buffer.from(client_id + ":" + client_secret).toString("base64"),
+          "Basic " + Buffer.from(client_id + ":" + client_secret).toString("base64"),
       },
     };
 
     axios(authOptions)
       .then((response) => {
-        const { data } = response;
-        const { access_token, refresh_token } = data;
+        const { access_token, refresh_token } = response.data;
 
-        const options = {
-          url: "https://api.spotify.com/v1/me",
-          headers: { Authorization: "Bearer " + access_token },
-        };
-
-        axios(options)
-          .then((response) => {
-            const { data } = response;
-            console.log(data);
-          })
-          .catch((error) => {
-            console.error("Error accessing Spotify API:", error);
-          });
+        res.cookie('access_token', access_token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'strict'
+        });
 
         res.redirect(
           "/#" +
@@ -100,12 +90,11 @@ router.get("/callback", function (req, res) {
       })
       .catch((error) => {
         console.error("Error getting access token:", error);
-        res.redirect(
-          "/#" + querystring.stringify({ error: "invalid_token" })
-        );
+        res.redirect("/#" + querystring.stringify({ error: "invalid_token" }));
       });
   }
 });
+
 
 router.get("/refresh_token", function (req, res) {
   const refresh_token = req.query.refresh_token;
@@ -155,6 +144,5 @@ router.get("/summer", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
 
 module.exports = router;
