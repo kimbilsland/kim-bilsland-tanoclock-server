@@ -139,4 +139,22 @@ router.get("/refresh_token", function (req, res) {
     });
 });
 
+router.get("/summer", async (req, res) => {
+  const access_token = req.cookies.access_token;
+
+  if (!access_token) {
+    return res.status(401).json({ message: "No access token provided" });
+  }
+
+  try {
+    const response = await axios.get("https://api.spotify.com/v1/browse/categories/summer/playlists", {
+      headers: { Authorization: "Bearer " + access_token },
+    });
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 module.exports = router;
