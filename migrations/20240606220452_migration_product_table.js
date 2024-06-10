@@ -11,11 +11,24 @@
       table.string('price').notNullable();
       table.string('type').notNullable();
       table.string('image').notNullable();
-      table.string('rating').notNullable();
+      table.integer('rating').notNullable();
       table.string('category').notNullable();
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.timestamp('updated_at').defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-    });
+    })
+    .createTable("reviews", (table) => {
+      table.increments("id").primary();
+      table.string("name").notNullable();
+      table.string("content", 1000).notNullable();
+      table.integer("rating").notNullable().defaultTo(0);
+      table
+          .integer("products_id")
+          .unsigned()
+          .references("products.id")
+          .onDelete("CASCADE");
+      table.timestamp("created_at").defaultTo(knex.fn.now());
+      table.timestamp('updated_at').defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+  });
   };
   
   /**
@@ -23,6 +36,6 @@
    * @returns { Promise<void> }
    */
   exports.down = function (knex) {
-    return knex.schema.dropTable("products");
-  };
+    return knex.schema.dropTable("reviews").dropTable("products");
+};
   

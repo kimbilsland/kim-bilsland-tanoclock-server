@@ -1,12 +1,5 @@
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-exports.seed = async function (knex) {
-  // Deletes ALL existing entries
-  await knex("products").del();
-  await knex("products").insert([
-    {
+module.exports = [
+  {
       id: 1,
       name: "Supergoop! Unseen Sunscreen SPF 40",
       description:
@@ -295,7 +288,6 @@ exports.seed = async function (knex) {
       rating: 4.7,
       category: "Alternative-tanning",
     },
-  ]);
-};
+  ];
 
 
