@@ -130,6 +130,14 @@ https://www.openuv.io/dashboard
 
 [Documentation](https://www.openuv.io/dashboard)
 
+## Future Additions
+
+- Functional store / product links (affiliate marketing)
+- Spotify API functionality for player within the app
+- Add additional information on UV in desktop view
+- Include educational articles on sunsafety, skincare, videos, tiktoks etc..
+- Scientific backing
+
 ## Contributing
 
 Contributions are always welcome!
