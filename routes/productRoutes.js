@@ -41,7 +41,7 @@ router.post("/:id/reviews", async (req, res) => {
 
   try {
     const reviewIds = await knex("reviews").insert({
-      products_id,
+      products_id: req.params.id,
       name,
       content,
       rating,
