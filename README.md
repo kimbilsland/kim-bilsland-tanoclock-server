@@ -3,15 +3,6 @@ A simple timer application for managing sun exposure using UV rays for people la
 
 To be used in tandem with https://github.com/kimbilsland/kim-bilsland-tanoclock-server
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Features](#features)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Contributing](#contributing)
-6. [License](#license)
-7. [Contact](#contact)
-
 ## Introduction
 If you are going to lay out in the sun, it is best to do it responsibly! TanO'Clock is a web application designed for sun lovers to mindfully enhance their outdoor tanning experience using sun safety. 
 
