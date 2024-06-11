@@ -115,11 +115,16 @@ https://www.openuv.io/dashboard
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Example Color | ![#cd572d](https://via.placeholder.com/10/0a192f?text=+) #cd572d |
-| Example Color | ![#ffffff](https://via.placeholder.com/10/f8f8f8?text=+) #ffffff |
-| Example Color | ![#f8ecd8](https://via.placeholder.com/10/00b48a?text=+) #f8ecd8 |
-| Example Color | ![#024da1](https://via.placeholder.com/10/00b48a?text=+) #024da1|
-| Example Color | ![#ff7f50](https://via.placeholder.com/10/00b48a?text=+) #ff7f501|
+| Example Color | ![#cd572d](https://via.placeholder.com/10/cd572d?text=+) #cd572d |
+| Example Color | ![#ffffff](https://via.placeholder.com/10/ffffff?text=+) #ffffff |
+| Example Color | ![#f8ecd8](https://via.placeholder.com/10/f8ecd8?text=+) #f8ecd8 |
+| Example Color | ![#024da1](https://via.placeholder.com/10/024da1?text=+) #024da1|
+| Example Color | ![#ff7f50](https://via.placeholder.com/10/ff7f50?text=+) #ff7f50|
+
+## Font Reference 
+
+- "Abril Fatface", serif
+- "Lato", sans-serif
 
 ## Documentation
 
