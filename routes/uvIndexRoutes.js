@@ -10,7 +10,9 @@ router.get("/", async (req, res) => {
   const long = req.query.long;
 
   if (!lat || !long) {
-    return res.status(400).json({ message: 'Latitude and longitude are required' });
+    return res
+      .status(400)
+      .json({ message: "Latitude and longitude are required" });
   }
 
   try {
@@ -20,12 +22,10 @@ router.get("/", async (req, res) => {
       },
     });
     res.json(response.data);
-    console.log(response.data)
+    console.log(response.data);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
 module.exports = router;
-
-

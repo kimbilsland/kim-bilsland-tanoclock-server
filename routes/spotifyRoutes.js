@@ -22,7 +22,10 @@ const generateRandomString = (length) => {
 
 const stateKey = "spotify_auth_state";
 
-router.use(express.static(__dirname + "/public")).use(cors()).use(cookieParser());
+router
+  .use(express.static(__dirname + "/public"))
+  .use(cors())
+  .use(cookieParser());
 
 router.get("/login", function (req, res) {
   const state = generateRandomString(16);
@@ -66,7 +69,8 @@ router.get("/callback", function (req, res) {
       headers: {
         "content-type": "application/x-www-form-urlencoded",
         Authorization:
-          "Basic " + Buffer.from(client_id + ":" + client_secret).toString("base64"),
+          "Basic " +
+          Buffer.from(client_id + ":" + client_secret).toString("base64"),
       },
     };
 
@@ -74,10 +78,10 @@ router.get("/callback", function (req, res) {
       .then((response) => {
         const { access_token, refresh_token } = response.data;
 
-        res.cookie('access_token', access_token, {
+        res.cookie("access_token", access_token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'strict'
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
         });
 
         res.redirect(
@@ -94,7 +98,6 @@ router.get("/callback", function (req, res) {
       });
   }
 });
-
 
 router.get("/refresh_token", function (req, res) {
   const refresh_token = req.query.refresh_token;
@@ -136,9 +139,12 @@ router.get("/summer", async (req, res) => {
   }
 
   try {
-    const response = await axios.get("https://api.spotify.com/v1/browse/categories/summer/playlists", {
-      headers: { Authorization: "Bearer " + access_token },
-    });
+    const response = await axios.get(
+      "https://api.spotify.com/v1/browse/categories/summer/playlists",
+      {
+        headers: { Authorization: "Bearer " + access_token },
+      }
+    );
     res.json(response.data);
   } catch (error) {
     res.status(500).json({ message: error.message });
