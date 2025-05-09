@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
+
+
 const cookieParser = require("cookie-parser");
 const uvIndexRoutes = require("./routes/uvIndexRoutes");
 const spotifyRoutes = require("./routes/spotifyRoutes");
@@ -44,7 +45,7 @@ app.use("/skintones", skinToneRoutes);
 app.use("/api/uvindex", uvIndexRoutes);
 app.use("/api/spotify", spotifyRoutes);
 app.use("/api/products", productRoutes);
-app.use("/api/products/:id", productRoutes);
+// app.use("/api/products/:id", productRoutes);
 
 // Start server
 app.listen(port, () => {
