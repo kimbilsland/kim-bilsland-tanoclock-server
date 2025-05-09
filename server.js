@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv = require('dotenv');
 
 
 const cookieParser = require("cookie-parser");
@@ -13,7 +14,8 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8080;
-const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:5173";
+const CORS_ORIGIN = process.env.CORS_ORIGIN || "https://tanoclock.netlify.app";
+// const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:5173";
 
 // Middleware
 app.use(
@@ -45,7 +47,7 @@ app.use("/skintones", skinToneRoutes);
 app.use("/api/uvindex", uvIndexRoutes);
 app.use("/api/spotify", spotifyRoutes);
 app.use("/api/products", productRoutes);
-// app.use("/api/products/:id", productRoutes);
+app.use("/api/products/:id", productRoutes);
 
 // Start server
 app.listen(port, () => {
