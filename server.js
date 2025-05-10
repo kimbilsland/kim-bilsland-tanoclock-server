@@ -14,14 +14,23 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8080;
-const CORS_ORIGIN = process.env.CORS_ORIGIN || "https://tanoclock.netlify.app";
+// const CORS_ORIGIN = process.env.CORS_ORIGIN || "https://tanoclock.netlify.app";
 // const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:5173";
-
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://tanoclock.netlify.app"
+];
 
 // Middleware
 app.use(
   cors({
-    origin: CORS_ORIGIN,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
